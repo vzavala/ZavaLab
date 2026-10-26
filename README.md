@@ -3,7 +3,8 @@
 Interactive collaboration network and world map of coauthors of the Scalable Systems Laboratory
 (Victor M. Zavala, University of Wisconsin–Madison), published at https://vzavala.github.io/ZavaLab/.
 
-- `index.html`: the network and the map
+- `index.html`: the collaboration network ("Network" tab)
+- `map/index.html`: the world map of coauthoring institutions ("Locations" tab)
 - `embed/network/` and `embed/map/`: each figure alone, for embedding in another site. In Google Sites,
   use **Insert → Embed → Embed code**:
 
