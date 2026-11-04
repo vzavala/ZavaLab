@@ -224,3 +224,12 @@ table.heat th.ch, table.heat td.cell { width: 6.8rem; min-width: 6.8rem; max-wid
   .site-header nav a { white-space: nowrap; font-size: 0.88rem; }
   #graph { height: 92vw; min-height: 320px; }
 }
+
+/* Same position and format of the top bar as the other ZavaLab Navigator pages:
+   8px page margin, a 1400px column with 12px sides, title row 0.4rem from the top, no divider line */
+body { padding: 8px; }
+.wrap { max-width: 1400px; padding: 0 12px; }
+.nav-head .wrap { padding-top: 0.4rem; }
+.collab-head { margin: 0.2rem 0 0.4rem; }
+.site-header { border-bottom: 0; }
+.site-header .wrap { padding-top: 0; padding-bottom: 0.4rem; }
