@@ -5,6 +5,8 @@ Interactive collaboration network and world map of coauthors of the Scalable Sys
 
 - `index.html`: the collaboration network ("Network" tab)
 - `map/index.html`: the world map of coauthoring institutions ("Locations" tab)
+- `statsbook/`: the knowledge graph of the textbook *Statistics for Chemical Engineers* ("StatsBook" tab). Static pages
+  built in the private StatsBook project and copied here with `KnowledgeGraph/publish.py`; edit them there, not here.
 - `embed/network/` and `embed/map/`: each figure alone, for embedding in another site. In Google Sites,
   use **Insert → Embed → Embed code**:
 

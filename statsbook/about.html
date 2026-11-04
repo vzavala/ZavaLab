@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About · Knowledge Graph · Statistics for Chemical Engineers</title>
+  <meta name="description" content="Interactive map of how the topics of the textbook Statistics for Chemical Engineers (V. M. Zavala) connect, and how often each appears." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23c5050c'/%3E%3Ccircle cx='10' cy='12' r='3' fill='white'/%3E%3Ccircle cx='22' cy='10' r='2.5' fill='white'/%3E%3Ccircle cx='17' cy='22' r='4' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav-head">
+    <div class="wrap">
+      <div class="collab-head">
+        <div class="title-row">
+          <h1><a href="../" target="_self" title="All navigators">ZavaLab Navigator</a></h1>
+          <a class="home-link" href="https://zavalab.engr.wisc.edu/" target="_top">[Back to ZavaLab website]</a>
+        </div>
+        <nav class="tabs" aria-label="Navigators"><a href="../network/" target="_self">Network</a><a href="../map/" target="_self">Map</a><a href="../publications/" target="_self">Publications</a><a href="../software/" target="_self">Software &amp; Data</a><a href="../resources/" target="_self">Resources</a><a href="./" target="_self" aria-current="page">StatsBook</a></nav>
+      </div>
+    </div>
+  </header>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Statistics for Chemical Engineers · Knowledge Graph</a>
+      <nav><a href="./">Map</a><a href="chapters.html">Chapters</a><a href="numbers.html">Book Numbers</a><a href="incidence.html">Topic Incidence</a><a href="about.html" aria-current="page">About</a><a class="ext" href="https://zavalab.engr.wisc.edu/publications/statsbook" target="_blank" rel="noopener">The book ↗</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap subpage">
+    <h1 id="about">About this map</h1>
+    <div class="about">
+      <p class="book-note">This material supports the book <em>“Statistics for Chemical Engineers: From Data to Models to Decisions”</em>
+        by Zavala, V. M. (2025), Cambridge University Press, ©.
+        <a href="https://www.cambridge.org/highereducation/product/A8DB49C10B02BADA637D13FC02CD62A7" target="_blank" rel="noopener">Official Cambridge Website</a></p>
+      <p>This site maps how the topics of <em>Statistics for Chemical Engineers: From Data to Models to Decisions</em>
+        (V. M. Zavala) connect, how often each one appears, and which ones the rest of the book depends on.
+        For the book itself, see <a href="https://zavalab.engr.wisc.edu/publications/statsbook" target="_blank" rel="noopener">the book page</a>.</p>
+
+      <h2>The pages</h2>
+      <ul>
+        <li><strong><a href="./">Map</a>.</strong> Every topic sits on a ring, grouped by family and colored accordingly. Larger circles are more important
+          topics (by default, the hub score; you can size them by connections, mentions, subsections, examples, exercises, chapters or bridge score).
+          Hover or click a topic to highlight its links; the panel shows where it appears, what it builds on, what builds on it, and a path back to its foundations.
+          Pick a chapter to see only the topics that chapter mentions, with those it introduces outlined.</li>
+        <li><strong><a href="chapters.html">Chapters</a>.</strong> How the seven chapters build on each other. Each arc joins the chapter where a topic is introduced
+          to a later chapter whose new topics build on it; cards summarize each chapter.</li>
+        <li><strong><a href="numbers.html">Book Numbers</a>.</strong> Totals for the book and rankings of topics by importance, mentions, reach and bridging.</li>
+        <li><strong><a href="incidence.html">Topic Incidence</a>.</strong> A topic-by-chapter table of mentions, showing which topics run through the whole book
+          and which belong to one chapter.</li>
+      </ul>
+
+      <h2>How it is built</h2>
+      <ul>
+        <li><strong>Topics.</strong> A curated list of 93 statistical concepts in eight families (Probability, RV models, Sampling, Estimation,
+          Uncertainty Quantification, Learning, Signals, Decisions) plus 10 application areas, drawn from the book's chapters, sections and index.
+          Each topic is recognized by a set of key phrases. Labels on the map are short; hover to see the full name.</li>
+        <li><strong>Incidence.</strong> <em>Mentions</em> counts key-phrase occurrences in the chapters; <em>subsections</em>, <em>examples</em> and
+          <em>exercises</em> count the places that mention a topic at least once. Counts are automated, so they are indicators rather than exact figures.</li>
+        <li><strong>Links.</strong> Two topics are linked when they are mentioned together in the same subsection, example or exercise more often than
+          their frequency alone would suggest (cosine association); each topic keeps its strongest links. A link runs from the topic introduced earlier
+          in the book to the one introduced later (“builds on”). A topic is introduced in the first chapter that covers it substantially.</li>
+        <li><strong>Importance.</strong> The <em>hub score</em> is PageRank on the network of statistical concepts, scaled so the top topic is 100.
+          The <em>bridge score</em> measures how often a topic lies on the shortest paths between others (betweenness centrality).</li>
+      </ul>
+    </div>
+  <div id="tip"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

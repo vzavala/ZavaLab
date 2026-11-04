@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Numbers · Knowledge Graph · Statistics for Chemical Engineers</title>
+  <meta name="description" content="Interactive map of how the topics of the textbook Statistics for Chemical Engineers (V. M. Zavala) connect, and how often each appears." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23c5050c'/%3E%3Ccircle cx='10' cy='12' r='3' fill='white'/%3E%3Ccircle cx='22' cy='10' r='2.5' fill='white'/%3E%3Ccircle cx='17' cy='22' r='4' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav-head">
+    <div class="wrap">
+      <div class="collab-head">
+        <div class="title-row">
+          <h1><a href="../" target="_self" title="All navigators">ZavaLab Navigator</a></h1>
+          <a class="home-link" href="https://zavalab.engr.wisc.edu/" target="_top">[Back to ZavaLab website]</a>
+        </div>
+        <nav class="tabs" aria-label="Navigators"><a href="../network/" target="_self">Network</a><a href="../map/" target="_self">Map</a><a href="../publications/" target="_self">Publications</a><a href="../software/" target="_self">Software &amp; Data</a><a href="../resources/" target="_self">Resources</a><a href="./" target="_self" aria-current="page">StatsBook</a></nav>
+      </div>
+    </div>
+  </header>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Statistics for Chemical Engineers · Knowledge Graph</a>
+      <nav><a href="./">Map</a><a href="chapters.html">Chapters</a><a href="numbers.html" aria-current="page">Book Numbers</a><a href="incidence.html">Topic Incidence</a><a href="about.html">About</a><a class="ext" href="https://zavalab.engr.wisc.edu/publications/statsbook" target="_blank" rel="noopener">The book ↗</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap subpage">
+    <h1 id="numbers">Book Numbers</h1>
+    <div class="stats" id="stat-cards"></div>
+    <div class="cols">
+      <div class="card"><h3>Hub topics</h3><p class="sub">Centrality (PageRank) in the co-usage network, scaled so the top topic is 100</p><div class="bars" id="bars-hub"></div></div>
+      <div class="card"><h3>Most mentioned</h3><p class="sub">Occurrences across the seven chapters</p><div class="bars" id="bars-mentions"></div></div>
+      <div class="card"><h3>Widest reach</h3><p class="sub">Number of subsections, examples and exercises that mention the topic</p><div class="bars" id="bars-units"></div></div>
+      <div class="card"><h3>Bridges</h3><p class="sub">Topics that connect otherwise distant parts of the book (betweenness)</p><div class="bars" id="bars-bridge"></div></div>
+    </div>
+  <div id="tip"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

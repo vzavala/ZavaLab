@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Graph · Statistics for Chemical Engineers</title>
+  <meta name="description" content="Interactive map of how the topics of the textbook Statistics for Chemical Engineers (V. M. Zavala) connect, and how often each appears." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23c5050c'/%3E%3Ccircle cx='10' cy='12' r='3' fill='white'/%3E%3Ccircle cx='22' cy='10' r='2.5' fill='white'/%3E%3Ccircle cx='17' cy='22' r='4' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav-head">
+    <div class="wrap">
+      <div class="collab-head">
+        <div class="title-row">
+          <h1><a href="../" target="_self" title="All navigators">ZavaLab Navigator</a></h1>
+          <a class="home-link" href="https://zavalab.engr.wisc.edu/" target="_top">[Back to ZavaLab website]</a>
+        </div>
+        <nav class="tabs" aria-label="Navigators"><a href="../network/" target="_self">Network</a><a href="../map/" target="_self">Map</a><a href="../publications/" target="_self">Publications</a><a href="../software/" target="_self">Software &amp; Data</a><a href="../resources/" target="_self">Resources</a><a href="./" target="_self" aria-current="page">StatsBook</a></nav>
+      </div>
+    </div>
+  </header>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="./">Statistics for Chemical Engineers · Knowledge Graph</a>
+      <nav><a href="./" aria-current="page">Map</a><a href="chapters.html">Chapters</a><a href="numbers.html">Book Numbers</a><a href="incidence.html">Topic Incidence</a><a href="about.html">About</a><a class="ext" href="https://zavalab.engr.wisc.edu/publications/statsbook" target="_blank" rel="noopener">The book ↗</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="map" class="map-top"></div>
+
+    <div class="net-wrap" id="net-wrap">
+      <aside class="net-controls" aria-label="Graph controls">
+        <input type="search" id="find" placeholder="Find a topic…" list="topic-names" aria-label="Find a topic" />
+        <datalist id="topic-names"></datalist>
+        <label class="check" style="flex-direction:column;align-items:flex-start">
+          <span class="label">Chapter</span>
+          <select id="chapter" style="max-width:190px"></select>
+        </label>
+        <label class="check" style="flex-direction:column;align-items:flex-start">
+          <span class="label">Size by</span>
+          <select id="size-by">
+            <option value="hub" selected>Hub score (centrality)</option>
+            <option value="degree">Connections (links)</option>
+            <option value="mentions">Mentions</option>
+            <option value="sections">Subsections</option>
+            <option value="examples">Examples</option>
+            <option value="exercises">Exercises</option>
+            <option value="chapters">Chapters</option>
+            <option value="bridge">Bridge score</option>
+          </select>
+        </label>
+        <div>
+          <div class="label">Topic families</div>
+          <div class="groups" id="families"></div>
+        </div>
+        <label class="check">Links: shared in ≥
+          <select id="min-shared">
+            <option value="2" selected>2</option><option value="3">3</option><option value="5">5</option><option value="8">8</option><option value="12">12</option>
+          </select> places
+        </label>
+        <div class="zoom" role="group" aria-label="Zoom">
+          <span class="small muted">Zoom</span>
+          <button class="btn secondary" id="zoom-out" type="button" aria-label="Zoom out">−</button>
+          <button class="btn secondary" id="zoom-in" type="button" aria-label="Zoom in">+</button>
+          <button class="btn secondary" id="zoom-reset" type="button">Reset</button>
+        </div>
+      </aside>
+
+      <div class="card graph-card">
+        <ul class="ring-legend" id="legend" aria-label="Topic families"></ul>
+        <svg id="graph" role="group" aria-label="Topic network">
+          <g id="viewport"><g id="edges"></g><g id="nodes"></g></g>
+        </svg>
+        <p class="hint" id="hint"></p>
+        <p class="totals" id="totals"></p>
+      </div>
+
+      <aside id="panel" class="card" hidden aria-live="polite"></aside>
+    </div>
+  <div id="tip"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
