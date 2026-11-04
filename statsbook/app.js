@@ -54,7 +54,6 @@
     vp.setAttribute("transform", `translate(${view.x.toFixed(1)},${view.y.toFixed(1)}) scale(${view.k.toFixed(4)})`);
     // Labels keep a readable on-screen size whatever the zoom
     vp.style.setProperty("--inv", (1 / view.k).toFixed(4));
-    svg.classList.toggle("zoomed", view.k > fitK() * 1.35);
   };
   let fitScale = 1;
   const fitK = () => fitScale;
@@ -67,12 +66,7 @@
     view = { k, x: w / 2 - k * (x0 + x1) / 2, y: h / 2 - k * (y0 + y1) / 2 };
     applyView();
   }
-  function zoomAt(f, px = svg.clientWidth / 2, py = svg.clientHeight / 2) {
-    const k = Math.max(fitScale * 0.5, Math.min(fitScale * 8, view.k * f));
-    const r = k / view.k;
-    view = { k, x: px - (px - view.x) * r, y: py - (py - view.y) * r };
-    applyView();
-  }
+
 
   // ------------------------------------------------------------------ visible graph
   const visibleNodes = () => D.nodes.filter((n) => state.families.has(n.family));
@@ -157,7 +151,7 @@
       fit();
     }
     svg.classList.toggle("chapter", !!state.chapter);
-    $("hint").textContent = "Hover or click a topic to see its links · drag to pan · ⌘/ctrl + scroll, pinch or double-click to zoom · " + (state.chapter
+    $("hint").textContent = "Hover or click a topic to see its links · " + (state.chapter
       ? `sized by mentions in Chapter ${state.chapter}; outlined circles are introduced in this chapter; faded topics do not appear in it`
       : "outlined circles are the top hub topics");
     highlight();
@@ -451,20 +445,12 @@
   const tipHide = () => (tip.style.display = "none");
 
   // ------------------------------------------------------------------ interaction
-  let drag = null, dragged = false;
-  svg.addEventListener("pointerdown", (e) => {
+  // The ring is fixed (no panning or zooming): hover shows a topic's links, click or tap selects it
+  svg.addEventListener("click", (e) => {
     const g = e.target.closest(".node");
-    dragged = false;
-    drag = { node: g?.dataset.id, x: e.clientX, y: e.clientY, vx: view.x, vy: view.y };
-    svg.classList.add("dragging");
-    svg.setPointerCapture(e.pointerId);
+    select(g ? g.dataset.id : null);
   });
   svg.addEventListener("pointermove", (e) => {
-    if (drag) {
-      if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 3) dragged = true;
-      if (dragged) { view.x = drag.vx + e.clientX - drag.x; view.y = drag.vy + e.clientY - drag.y; applyView(); }
-      return;
-    }
     const g = e.target.closest(".node");
     if (g) {
       const n = byId.get(g.dataset.id);
@@ -472,25 +458,11 @@
       if (state.hovered !== n.id) { state.hovered = n.id; highlight(); }
     } else if (state.hovered) { state.hovered = null; tipHide(); highlight(); }
   });
-  svg.addEventListener("pointerup", (e) => {
-    if (drag && !dragged) select(drag.node ?? null);
-    drag = null; svg.classList.remove("dragging");
-  });
   svg.addEventListener("pointerleave", () => { if (state.hovered) { state.hovered = null; highlight(); } tipHide(); });
-  svg.addEventListener("wheel", (e) => {
-    if (!e.ctrlKey && !e.metaKey) return; // plain scrolling still scrolls the page
-    e.preventDefault();
-    const b = svg.getBoundingClientRect();
-    zoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - b.left, e.clientY - b.top);
-  }, { passive: false });
   nodeLayer.addEventListener("keydown", (e) => {
     const g = e.target.closest(".node");
     if (g && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); select(g.dataset.id); }
   });
-  svg.addEventListener("dblclick", (e) => { e.preventDefault(); const b = svg.getBoundingClientRect(); zoomAt(e.shiftKey ? 1 / 2 : 2, e.clientX - b.left, e.clientY - b.top); });
-  $("zoom-in").addEventListener("click", () => zoomAt(1.5));
-  $("zoom-out").addEventListener("click", () => zoomAt(1 / 1.5));
-  $("zoom-reset").addEventListener("click", fit);
   // Refit when the graph area changes size (window resize, details panel opening or closing)
   let lastW = 0;
   new ResizeObserver(() => { if (svg.clientWidth !== lastW) { lastW = svg.clientWidth; fit(); } }).observe(svg);
@@ -580,6 +552,11 @@
 
 
   // ------------------------------------------------------------------ start
+  // On phones the menus scroll sideways; bring the current page's tab into view
+  document.querySelectorAll('nav [aria-current="page"]').forEach((a) => {
+    const p = a.parentElement;
+    if (p.scrollWidth > p.clientWidth) p.scrollLeft = a.offsetLeft - p.offsetLeft - (p.clientWidth - a.clientWidth) / 2;
+  });
   draw();
   heat();
   const q = new URLSearchParams(location.search).get("topic");
