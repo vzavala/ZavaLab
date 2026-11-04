@@ -152,6 +152,8 @@
     if (xs.length) {
       const pad = ringStep * (1.2 * 0.56 * Math.max(...shown.map((n) => n.label.length)) + 0.3) + 32;
       fitBox = [Math.min(...xs.map((p) => p.x)) - pad, Math.min(...xs.map((p) => p.y)) - pad, Math.max(...xs.map((p) => p.x)) + pad, Math.max(...xs.map((p) => p.y)) + pad];
+      // On the map, fit to the drawing as actually rendered (labels included), so long names don't waste space
+      if (ON_MAP && vp.getBBox) { const b = vp.getBBox(); if (b.width) fitBox = [b.x - 6, b.y - 6, b.x + b.width + 6, b.y + b.height + 6]; }
       fit();
     }
     svg.classList.toggle("chapter", !!state.chapter);

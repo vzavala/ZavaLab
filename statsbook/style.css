@@ -75,7 +75,6 @@ input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px s
 .node text.minor { display: none; }
 #graph.zoomed .node text.minor, #graph.focus .node.on text.minor { display: inline; }
 #graph.focus .node:not(.on) { opacity: 0.15; }
-#graph.focus .node.on text { font-weight: 600; }
 .node.me circle, .node.selected circle, .node:focus-visible circle { stroke: var(--red); stroke-width: 3.5; }
 #graph.chapter .node.off { opacity: 0.1; }
 #graph.chapter #edges .off { stroke-opacity: 0.03; }
@@ -139,8 +138,6 @@ table.heat td.tot { text-align: right; color: var(--muted); padding-left: 0.5rem
   .bar-row { grid-template-columns: 9rem 1fr 2.6rem; }
 }
 
-/* Top hubs get bold labels */
-.node.hub text { font-weight: 700; }
 
 /* Subpages */
 .site-header nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
