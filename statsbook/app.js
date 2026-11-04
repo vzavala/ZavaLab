@@ -256,7 +256,7 @@
       ${alongside.length ? `<h4>Used alongside</h4><div>${alongside.slice(0, 10).map((e) => chip(other(e))).join("")}</div>` : ""}
       <p style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:1rem">
         ${buildsOn.length ? `<button class="btn secondary ${state.showPath ? "active" : ""}" id="path-btn" type="button">${state.showPath ? "Hide" : "Show"} path to foundations</button>` : ""}
-        ${n.gitbook ? `<a class="btn secondary" href="${esc(n.gitbook.url)}" target="_blank" rel="noopener">Read online: ${esc(n.gitbook.title)}</a>` : ""}
+        ${n.online ? `<a class="btn secondary" href="${esc(n.online.url)}" target="_blank" rel="noopener">Read online: ${esc(n.online.title)}</a>` : ""}
         <button class="btn secondary" id="clear-sel" type="button">Clear</button>
       </p>`;
     panel.querySelector("#clear-sel").addEventListener("click", () => select(null));
