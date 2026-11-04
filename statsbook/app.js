@@ -150,7 +150,7 @@
     // Fit to the drawing
     const xs = shown.map((n) => P(n.id));
     if (xs.length) {
-      const pad = ringStep * (1.05 * 0.56 * Math.max(...shown.map((n) => n.label.length)) + 0.3) + 32;
+      const pad = ringStep * (1.2 * 0.56 * Math.max(...shown.map((n) => n.label.length)) + 0.3) + 32;
       fitBox = [Math.min(...xs.map((p) => p.x)) - pad, Math.min(...xs.map((p) => p.y)) - pad, Math.max(...xs.map((p) => p.x)) + pad, Math.max(...xs.map((p) => p.y)) + pad];
       fit();
     }
@@ -168,7 +168,7 @@
       {
         const deg = (p.a * 180) / Math.PI, flip = Math.cos(p.a) < 0, gap = r + ringStep * 0.25;
         // As on the collaboration page, ring labels scale with the drawing (one line of text per slot)
-        t.style.fontSize = `${(ringStep * 1.05).toFixed(1)}px`;
+        t.style.fontSize = `${(ringStep * 1.2).toFixed(1)}px`;
         t.setAttribute("transform", `rotate(${flip ? deg + 180 : deg})`);
         t.setAttribute("x", flip ? -gap : gap); t.setAttribute("y", 0); t.setAttribute("dy", "0.35em");
         t.setAttribute("text-anchor", flip ? "end" : "start");
